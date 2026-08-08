@@ -162,24 +162,17 @@ class ConsoleView:
         print(f"  - Blood Pressure: {patient.blood_pressure} mmHg")
 
     @staticmethod
-    def display_diagnostic_report(patient, evaluation):
-        print("\n" + "="*40)
-        print("       DIAGNOSTIC RISK REPORT")
-        print("="*40)
-        print(f"Patient: {patient.name} (ID: {patient.id})")
-        print("-" * 40)
-        print("Metric Scores Breakdown:")
-        for metric, score in evaluation["breakdown"].items():
-            val = getattr(patient, metric.lower() if metric != "BloodPressure" else "blood_pressure")
-            if isinstance(val, float):
-                val_str = f"{val:.1f}"
-            else:
-                val_str = str(val)
-            print(f"  * {metric:<15} (Value: {val_str:<5}) -> Score: {score}")
-        print("-" * 40)
-        print(f"Total Risk Score: {evaluation['total_score']} / 8")
-        print(f"Risk Category:    {evaluation['category']}")
-        print("="*40)
+    def display_diagnostic_report(patient_id: int, score: int, category: str) -> None:
+        print("\n" + "="*52)
+        print("                 MEDICAL DIAGNOSTIC REPORT")
+        print("="*52)
+        print("-" * 52)
+        print(f" Patient ID:       {patient_id}")
+        print(f" Cumulative Score: {score} pts")
+        print(f" Risk Category:    {category.upper()}")
+        print("-" * 52)
+        print("              [!] CONFIDENTIAL INFORMATION [!]              ")
+        print("="*52)
 
     @staticmethod
     def display_message(msg):
